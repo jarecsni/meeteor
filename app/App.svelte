@@ -2,27 +2,10 @@
     <actionBar title="Meeteor2" />
     <stackLayout>
         <label class="header" margin=10>Your Groups</label>
-        <scrollView orientation="horizontal">
+        <scrollView orientation="horizontal" scrollbarIndicatorVisible={false}>
             <stackLayout orientation="horizontal" height="170" margin=2>
                 {#each myGroups as group}
-                    <absoluteLayout backgroundColor="lightgray" margin=4>
-                        <image 
-                            src={group.thumbnail}
-                            width="100"
-                            height="100"
-                            top=0
-                        />
-                        <label 
-                            class="groupThumbnail"  
-                            textWrap={true}
-                            width=100
-                            height=170
-                            top=40
-                            marginLeft=4
-                        >
-                            {group.name}
-                        </label>
-                    </absoluteLayout>
+                    <GroupThumbnail {...group}/>
                 {/each}
             </stackLayout>
         </scrollView>
@@ -48,6 +31,7 @@
 </page>
 
 <script>
+    import GroupThumbnail from './components/GroupThumbnail';
     let currentCalendar = 0;
     function onCalendarTypeChange(e) {
         currentCalendar = e.value;
