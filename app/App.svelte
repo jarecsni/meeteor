@@ -1,20 +1,31 @@
 <page>
-    <actionBar title="Meeteor" />
+    <actionBar title="Meeteor2" />
     <stackLayout>
         <label class="header" margin=10>Your Groups</label>
-        <stackLayout orientation="horizontal" height="100">
-            {#each myGroups as group}
-                <dockLayout backgroundColor="lightgray" margin=10>
-                    <label 
-                        class="groupThumbnail"  
-                        textWrap={true}
-                        width=100
-                    >
-                        {group.name}
-                    </label>
-                </dockLayout>
-            {/each}
-        </stackLayout>
+        <scrollView orientation="horizontal">
+            <stackLayout orientation="horizontal" height="170" margin=2>
+                {#each myGroups as group}
+                    <absoluteLayout backgroundColor="lightgray" margin=4>
+                        <image 
+                            src={group.thumbnail}
+                            width="100"
+                            height="100"
+                            top=0
+                        />
+                        <label 
+                            class="groupThumbnail"  
+                            textWrap={true}
+                            width=100
+                            height=170
+                            top=40
+                            marginLeft=4
+                        >
+                            {group.name}
+                        </label>
+                    </absoluteLayout>
+                {/each}
+            </stackLayout>
+        </scrollView>
         <label class="header" margin=10>Your Calendar</label>
         <segmentedBar color='white' class="calendar"
             selectedIndex="{currentCalendar}" on:selectedIndexChange={onCalendarTypeChange}>
@@ -44,13 +55,20 @@
 
     const myGroups = [
         {
-            name: 'Sunday Book Club'
+            name: 'Sunday Book Club',
+            thumbnail: 'https://bookofaces.files.wordpress.com/2019/02/ck-jhbsun081fshcr.jpg?w=256&h=256&crop=1'
         },
         {
-            name: 'Svelte Native Hackers'
+            name: 'Svelte Native Hackers',
+            thumbnail: 'https://twobluecommunications.com/wp-content/uploads/2018/12/Chelsea-Waterfront-3-256x256.jpg'
         },
         {
-            name: 'Svelte Stars'
+            name: 'Svelte Stars',
+            thumbnail: 'https://twobluecommunications.com/wp-content/uploads/2018/06/Eastward-view-cropped-bottom-downsized-256x256.jpg'
+        },
+        {
+            name: 'Svelte Life',
+            thumbnail: 'https://twobluecommunications.com/wp-content/uploads/2018/06/Eastward-view-cropped-bottom-downsized-256x256.jpg'
         }
     ];
 
@@ -66,7 +84,7 @@
         font-size: 24px;
     }
     .groupThumbnail {
-        background-color: aqua;
+        opacity: 1;
     }
     .calendar {
         margin: 5px;
