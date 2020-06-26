@@ -1,5 +1,5 @@
 <page>
-    <actionBar title="Meeteor2" />
+    <actionBar title="Meeteor" />
     <stackLayout>
         <label class="header" margin=10>Your Groups</label>
         <scrollView orientation="horizontal" scrollbarIndicatorVisible={false}>
@@ -17,11 +17,7 @@
             <segmentedBarItem title="Past" />
         </segmentedBar>
         {#if currentCalendar === 0 }
-            <stackLayout orientation="vertical" height="100">
-            {#each myUpcomingEvents as event}
-                <label margin=10>{event.title}</label>
-            {/each}
-        </stackLayout>
+            <EventList events={upcomingEventsGrouped}/>
         {:else if currentCalendar === 1}
             <label margin=10>Nothing coming up...</label>
         {:else}
@@ -31,7 +27,11 @@
 </page>
 
 <script>
+    import { onMount } from 'svelte';
     import GroupThumbnail from './components/GroupThumbnail';
+    import EventSummary from './components/EventSummary';
+    import EventList from './components/EventList';
+
     let currentCalendar = 0;
     function onCalendarTypeChange(e) {
         currentCalendar = e.value;
@@ -43,7 +43,7 @@
             thumbnail: 'https://bookofaces.files.wordpress.com/2019/02/ck-jhbsun081fshcr.jpg?w=256&h=256&crop=1'
         },
         {
-            name: 'Svelte Native Hackers',
+            name: 'Svelte Natives',
             thumbnail: 'https://twobluecommunications.com/wp-content/uploads/2018/12/Chelsea-Waterfront-3-256x256.jpg'
         },
         {
@@ -56,19 +56,61 @@
         }
     ];
 
-    const myUpcomingEvents = [
+    let upcomingEvents = [
         {
-            title: 'Bring your Svelte Native project'
+            date: '18/06/2020',
+            time: '16:00',
+            title: 'Some interesting event',
+            group: 'React London'
+        },
+        {
+            date: '18/06/2020',
+            time: '18:00',
+            title: 'Why Svelte is the Best?',
+            group: 'Svelte Hackers'
+        },
+        {
+            date: '19/06/2020',
+            time: '18:00',
+            title: 'Templating with Svelte',
+            group: 'Svelte Rookies'
         }
-    ]
+    ];
+
+    function addEvent() {
+        upcomingEvents = [...upcomingEvents, {
+            date: '19/06/2020',
+            time: '20:00',
+            title: 'Wonders of Svelte',
+            group: 'Svelte Magicians'
+        }
+        ];
+    }
+
+    let upcomingEventsGrouped; 
+    $: {
+        upcomingEventsGrouped = groupEvents(upcomingEvents);
+    }
+
+    function groupEvents(events) {
+        const result = [];
+        let currentDate = null;
+        events.forEach(({date, time, title, group}) => {
+            const _date = (date !== currentDate ? date : null);
+            result.push({
+                time, title, group, date: _date 
+            });
+            currentDate = date;
+        });
+        return result;   
+    }
+
+
 </script>
 
 <style>
     .header {
         font-size: 24px;
-    }
-    .groupThumbnail {
-        opacity: 1;
     }
     .calendar {
         margin: 5px;

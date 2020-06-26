@@ -8,7 +8,7 @@
     <label 
         class="groupThumbnail"  
         textWrap={true}
-        width=100
+        width=90
         height=170
         top=40
         marginLeft=4
@@ -20,3 +20,9 @@
 <script>
 	export let name, thumbnail;
 </script>
+
+<style>
+    .groupThumbnail {
+        opacity: 1;
+    }
+</style>
