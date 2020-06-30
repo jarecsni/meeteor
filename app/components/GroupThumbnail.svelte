@@ -1,4 +1,4 @@
-<absoluteLayout backgroundColor="lightgray" margin=4>
+<stackLayout backgroundColor="lightgray" margin=4>
     <image 
         src={thumbnail}
         width="100"
@@ -9,16 +9,17 @@
         class="groupThumbnail"  
         textWrap={true}
         width=90
-        height=170
+        height=50
         top=40
         marginLeft=4
     >
         {name}
     </label>
-</absoluteLayout>
+    <button height=20 on:tap={handleLeaveGroup}>Leave</button>
+</stackLayout>
 
 <script>
-	export let name, thumbnail;
+	export let name, thumbnail, handleLeaveGroup;
 </script>
 
 <style>

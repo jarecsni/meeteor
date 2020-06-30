@@ -3,9 +3,12 @@
     <stackLayout>
         <label class="header" margin=10>Your Groups</label>
         <scrollView orientation="horizontal" scrollbarIndicatorVisible={false}>
-            <stackLayout orientation="horizontal" height="170" margin=2>
+            <stackLayout orientation="horizontal" height="200" margin=2>
                 {#each myGroups as group}
-                    <GroupThumbnail {...group}/>
+                    <GroupThumbnail 
+                        {...group} 
+                        handleLeaveGroup={()=>handleLeaveGroup(group.name)}
+                    />
                 {/each}
             </stackLayout>
         </scrollView>
@@ -37,7 +40,12 @@
         currentCalendar = e.value;
     }
 
-    const myGroups = [
+    function handleLeaveGroup(name) {
+        console.log('Left group: ' + name);
+        myGroups = myGroups.filter(e => e.name != name);
+    }
+
+    let myGroups = [
         {
             name: 'Sunday Book Club',
             thumbnail: 'https://bookofaces.files.wordpress.com/2019/02/ck-jhbsun081fshcr.jpg?w=256&h=256&crop=1'
