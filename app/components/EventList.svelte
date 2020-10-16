@@ -1,19 +1,13 @@
 <scrollView orientation="vertical" scrollbarIndicatorVisible={false}>
     <stackLayout orientation="vertical">
         {#each events as event}
-            {#if !!event.date }
-                <label marginLeft=10>{event.date}</label>
-            {/if}
-            <EventSummary 
-                title={event.title}
-                time={event.time}
-                group={event.group}
-            />
+            <EventSummary {...event}/>
         {/each}
     </stackLayout>
 </scrollView>
 
 <script>
+import App from '~/App.svelte';
     import EventSummary from './EventSummary';
     export let events;
 </script>

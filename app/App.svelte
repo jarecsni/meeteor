@@ -1,9 +1,9 @@
 <page>
     <actionBar title="Meeteor" />
     <stackLayout>
-        <label class="header" margin=10>Your Groups</label>
+        <label class="header">Your Groups</label>
         <scrollView orientation="horizontal" scrollbarIndicatorVisible={false}>
-            <stackLayout orientation="horizontal" height="200" margin=2>
+            <stackLayout class="groupContainer" orientation="horizontal">
                 {#each myGroups as group}
                     <GroupThumbnail 
                         {...group} 
@@ -30,9 +30,7 @@
 </page>
 
 <script>
-    import { onMount } from 'svelte';
     import GroupThumbnail from './components/GroupThumbnail';
-    import EventSummary from './components/EventSummary';
     import EventList from './components/EventList';
 
     let currentCalendar = 0;
@@ -119,6 +117,11 @@
 <style>
     .header {
         font-size: 24px;
+        margin: 10;
+    }
+    .groupContainer {
+        height: 200;
+        margin: 2;
     }
     .calendar {
         margin: 5px;

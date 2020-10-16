@@ -1,21 +1,20 @@
-<stackLayout backgroundColor="lightgray" margin=4>
+<stackLayout class="groupPanel">
     <image 
         src={thumbnail}
-        width="100"
-        height="100"
-        top=0
+        class="groupThumbnail"
     />
     <label 
-        class="groupThumbnail"  
+        class="groupLabel"  
         textWrap={true}
-        width=90
-        height=50
-        top=40
-        marginLeft=4
     >
         {name}
     </label>
-    <button height=20 on:tap={handleLeaveGroup}>Leave</button>
+    <!-- <button 
+        class="leaveGroupButton" 
+        on:tap={handleLeaveGroup}
+    >
+        Leave
+    </button> -->
 </stackLayout>
 
 <script>
@@ -23,7 +22,16 @@
 </script>
 
 <style>
+    .groupPanel {
+        background-color: lightgray; 
+        margin: 4;
+    }
     .groupThumbnail {
-        opacity: 1;
+        width: 100;
+    }
+    .groupLabel {
+        margin-left: 4;
+        width: 100;
+        height: 50;
     }
 </style>
