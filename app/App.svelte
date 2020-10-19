@@ -1,16 +1,16 @@
-<page>
+<BottomNavigation>
     <actionBar title="Svelte Native App" />
-    <gridLayout>
-        <label class="info" horizontalAlignment="center" verticalAlignment="center" textWrap="true">
-            <formattedString>
-                <span class="fas" text="&#xf135;" />
-                <span text=" {message}" />
-            </formattedString>
-        </label>
-    </gridLayout>
-</page>
+    <tabs>
+        <tabStrip>
+            <tabStripItem title="Explorer" />
+            <tabStripItem title="Home" />
+            <tabStripItem title="Alerts" />
+        </tabStrip>
+    </tabs>
+</BottomNavigation>
 
 <script>
+    import { BottomNavigation } from 'svelte-native/components'
     let message = "Blank Svelte Native App"
 </script>
 
